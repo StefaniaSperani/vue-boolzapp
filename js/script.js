@@ -1,12 +1,14 @@
 
 
 const {createApp} = Vue;
-//Creo lApp
+//Creo l'App
 createApp({
     //Inserisco i data
     data() {
         return {
-            currentChat: '',
+            currentIndex: 0,
+            newMsg: '',
+            autoMsg: '',
             //Inserisco l'array dei miei contatti
             contacts: [
                 {
@@ -181,7 +183,40 @@ createApp({
             ]
         }
     },
-
+    // Creo i methods
     methods: {
+        // al click sul profilo dello user 
+        setActiveChat(index){
+            this.currentIndex = index;
+        },
+        // nella casella di input attacco la funzione per inviare il messaggio
+        sendMsg(){
+            //creo la variabile, a cui attacco il trim
+            let inputMsg = this.newMsg.trim();
+            //SE l'inputMsg non ha nulla
+            if(!inputMsg){
+                //non fa niente
+                return;
+                //altrimenti
+            }else{
+                //pusho il nuovo oggetto dentro la chat
+                this.contacts[this.currentIndex].messages.push({
+                    date: '02/11/2022',
+                    message: inputMsg,
+                    status: 'sent'
+            });
+            }
+            //setto un timeout per una risposta automatica
+            this.autoMsg = setTimeout(()=> {
+                this.contacts[this.currentIndex].messages.push({
+                    date: '02/11/2022',
+                    message: 'ok',
+                    status: 'received'
+            })
+            }, 1000)
+            //svuoto il mio input
+            this.newMsg = '';
+        },
     }
+//monto l'app
 }).mount('#app')

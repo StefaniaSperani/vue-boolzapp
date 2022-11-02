@@ -10,14 +10,14 @@
     background-color: #f1f5f5;
     cursor: pointer;
 }
-.msgSent{
+.sent{
     background-color: #d5f9ba;
     width: 300px;
     padding: 10px;
     margin: 5px 0;
-    
+    align-self: flex-end;
 }
-.msgRec{
+.received{
     background-color: #fff;
     width: 300px;
     padding: 10px;
@@ -125,8 +125,13 @@ input{
 #sendMsg input{
     width: 80%;
     height: 40px;
+    margin: 10px 0;
 }
 .lastAccess{
     font-size: 12px;
     color: #c6b5b1;
+}
+input:focus-visible {
+    outline: none;
+    
 }
