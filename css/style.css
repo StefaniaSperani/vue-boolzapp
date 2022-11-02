@@ -1,0 +1,124 @@
+/* COMMON */
+:root{
+
+}
+
+.activeChat{
+    background-color: #e9ebeb;
+}
+.userChat:hover{
+    background-color: #f1f5f5;
+    cursor: pointer;
+}
+.msgSent{
+    background-color: #d5f9ba;
+    padding: 10px;
+    margin: 5px 0;
+    
+}
+.msgRec{
+    background-color: #fff;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+
+/* BODY */
+#wrapper{
+    height: 100vh;
+    background: linear-gradient(0deg, rgb(228, 226, 222) 85%, rgb(0, 150, 136) 85%);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+#app{
+    width: 80vw;
+    height: 90vh;
+    background-color: white;
+}
+
+/* LEFT */
+#left{
+    width: 50%;
+    flex: 1.5;
+}
+.me, .activeChatUser{
+    height: 70px;
+    padding: 10px;
+    background-color: #EAEAEA;
+}
+img{
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 2px;
+}
+.fa-solid{
+    color: grey;
+    padding: 0 8px;
+    cursor: pointer;
+}
+.notifications{
+    height: 70px;
+    padding: 10px;
+    background-color: #8edafc;
+}
+.notifications p{
+    margin: 0;
+}
+.bell{
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fa-bell-slash{
+    color: #8edafc;
+}
+a{
+    color: #7e9685;
+    font-size: 12px;
+}
+#searchBar{
+    height: 50px;
+    background-color:#fafafa;
+}
+.lastMessage{
+    font-size: 12px;
+}
+.dateLastMsg{
+    font-size: 10px;
+}
+#usersChat{
+    flex-shrink: 0;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+.userChat{
+    height: 60px;
+}
+
+
+
+
+
+/* RIGHT */
+#right{
+    flex: 2.5;
+}
+#chat{
+    height: 100%;
+    overflow-y: scroll;
+    background-image: url(../img/mine.jpg);
+}
+#sendMsg{
+    height: 60px;
+    background-color: #f3eeea;
+}
+#sendMsg input{
+    width: 80%;
+    height: 40px;
+}
