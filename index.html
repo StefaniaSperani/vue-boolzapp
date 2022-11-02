@@ -85,9 +85,16 @@
 
             <section id="right"  class="d-flex flex-column">
                 <div class="activeChatUser d-flex align-items-center justify-content-between">
-                    <div class="profile">
+                    <div class="profile d-flex">
                         <img src="./img/avatar_1.jpg" alt="Me">
-                        <span>Michele</span>
+                        <div class="d-flex d-flex align-items-center justify-content-between">
+                            <div class="d-flex flex-column">
+                                <span>Michele</span>
+                            <span class="lastAccess">Ultimo accesso: oggi</span>
+                            </div>
+                            
+                        </div>
+
                     </div>
                     <div class="icons">
                         <i class="fa-solid fa-magnifying-glass fa-xl"></i>
@@ -98,20 +105,20 @@
                 <div id="chat" class="p-5">
                     <div class="d-flex d-flex justify-content-end align-items-end flex-column">
                         <div class="msgSent ">
-                            Hai pushato? 
+                            <span>Hai pushato?</span> 
                             <div class="dateLastMsg d-flex justify-content-end">12.00</div>
                         </div>
                     </div>
                     <div class="d-flex d-flex justify-content-end align-items-start flex-column">
                         <div class="msgRec ">
-                            Si 
+                            <span>Si</span> 
                             <div class="dateLastMsg d-flex justify-content-end">12.00</div>
                         </div>
                     </div>
                 </div>
                 <div id="sendMsg" class="d-flex align-items-center justify-content-between px-2">
                     <i class="fa-regular fa-face-smile fa-lg"></i>
-                    <input type="text">
+                    <input type="text" placeholder="Scrivi un messaggio" class="p-2">
                     <i class="fa-solid fa-microphone fa-lg"></i>
                 </div>
             </section>
