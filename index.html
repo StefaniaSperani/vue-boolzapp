@@ -21,9 +21,13 @@
 </head>
 
 <body>
+    <!-- WRAPPER -->
     <div id="wrapper" class="d-flex justify-content-center align-items-center">
+        <!-- APP -->
         <div id="app" class="d-flex">
+            <!-- SEZIONE SINISTRA -->
             <section id="left" class="d-flex flex-column">
+                <!-- MIO CONTATTO -->
                 <div class="me d-flex align-items-center justify-content-between">
                     <div class="profile">
                         <img src="./img/avatar_io.jpg" alt="Me">
@@ -35,6 +39,7 @@
                         <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                     </div>
                 </div>
+                <!-- NOTIFICHE -->
                 <div class="notifications d-flex align-items-center gap-1">
                     <div class="bell">
                         <i class="fa-solid fa-bell-slash fa-lg"></i>
@@ -44,6 +49,7 @@
                         <a href="#">Attiva notifiche desktop</a>
                     </div>
                 </div>
+                <!-- SEARCH BAR -->
                 <div id="searchBar" class="p-1">
                     <div class="input-group mb-3">
                         <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -52,49 +58,34 @@
                             aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                 </div>
+                <!-- CHAT CON GLI USERS -->
                 <div id="usersChat">
-                    <div class="userChat d-flex activeChat p-1">
-                        <img src="./img/avatar_1.jpg" alt="Me" class="mx-3">
+                    <div class="userChat d-flex p-1" v-for="(contact, id) in contacts" :key="id">
+                        <img src="./img/avatar_1.jpg" alt="" class="mx-3">
                         <div class="justify-content-between">
-
                         </div>
                         <div class="d-flex flex-column flex-grow-1">
-                            <span class="userName fw-bold">Michele</span>
-                            <span class="lastMessage">Ultimo messaggio</span>
-
+                            <span class="userName fw-bold">{{contact.name}}</span>
+                            <!-- v-if="contact.messages.length -1.status === 'received'" -->
+                            <span class="lastMessage">{{contact.messages[1].message}}</span>
                         </div>
                         <div class="dateLastMsg">12.00</div>
                     </div>
-                    <div class="userChat d-flex p-1">
-                        <img src="./img/avatar_1.jpg" alt="Me" class="mx-3">
-                        <div class="justify-content-between">
-
-                        </div>
-                        <div class="d-flex flex-column flex-grow-1">
-                            <span class="userName fw-bold">Michele</span>
-                            <span class="lastMessage">Ultimo messaggio</span>
-
-                        </div>
-                        <div class="dateLastMsg">12.00</div>
-                    </div>
-                    
-                    
                 </div>
             </section>
 
-
-            <section id="right"  class="d-flex flex-column">
+            <!-- SEZIONE DESTRA -->
+            <section id="right" class="d-flex flex-column">
+                <!-- HEADER CONLA CHAT ATTIVA -->
                 <div class="activeChatUser d-flex align-items-center justify-content-between">
                     <div class="profile d-flex">
                         <img src="./img/avatar_1.jpg" alt="Me">
                         <div class="d-flex d-flex align-items-center justify-content-between">
                             <div class="d-flex flex-column">
                                 <span>Michele</span>
-                            <span class="lastAccess">Ultimo accesso: oggi</span>
+                                <span class="lastAccess">Ultimo accesso: oggi</span>
                             </div>
-                            
                         </div>
-
                     </div>
                     <div class="icons">
                         <i class="fa-solid fa-magnifying-glass fa-xl"></i>
@@ -102,20 +93,22 @@
                         <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                     </div>
                 </div>
+                <!-- SCHERMATA CHAT -->
                 <div id="chat" class="p-5">
                     <div class="d-flex d-flex justify-content-end align-items-end flex-column">
                         <div class="msgSent ">
-                            <span>Hai pushato?</span> 
+                            <span>Hai pushato?</span>
                             <div class="dateLastMsg d-flex justify-content-end">12.00</div>
                         </div>
                     </div>
                     <div class="d-flex d-flex justify-content-end align-items-start flex-column">
                         <div class="msgRec ">
-                            <span>Si</span> 
+                            <span>Si</span>
                             <div class="dateLastMsg d-flex justify-content-end">12.00</div>
                         </div>
                     </div>
                 </div>
+                <!-- INPUT SCRIVI MESSAGGIO -->
                 <div id="sendMsg" class="d-flex align-items-center justify-content-between px-2">
                     <i class="fa-regular fa-face-smile fa-lg"></i>
                     <input type="text" placeholder="Scrivi un messaggio" class="p-2">
