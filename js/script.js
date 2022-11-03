@@ -9,6 +9,7 @@ createApp({
             currentIndex: 0,
             newMsg: '',
             autoMsg: '',
+            searchTerm: '',
             //Inserisco l'array dei miei contatti
             contacts: [
                 {
@@ -183,25 +184,35 @@ createApp({
             ]
         }
     },
+    computed: {
+        filteredContact(){
+            return this.contacts.filter((item)=>{
+                const name = item.name.toLowerCase();
+                return name.includes(this.searchTerm.toLowerCase());
+            })
+        }
+    },
     // Creo i methods
     methods: {
         // al click sul profilo dello user 
-        setActiveChat(index){
-            this.currentIndex = index;
+        setActiveChat(id){
+            // this.currentIndex = index;
+            this.currentIndex = this.contacts.findIndex((contact)=> contact.id === id);
         },
         // nella casella di input attacco la funzione per inviare il messaggio
         sendMsg(){
-            //creo la variabile, a cui attacco il trim
-            let inputMsg = this.newMsg.trim();
+            const d = new Date();
+            let newDate = d.toDateString();
+            let inputMsg = this.newMsg;
             //SE l'inputMsg non ha nulla
-            if(!inputMsg){
+            if(!this.newMsg){
                 //non fa niente
                 return;
                 //altrimenti
             }else{
                 //pusho il nuovo oggetto dentro la chat
                 this.contacts[this.currentIndex].messages.push({
-                    date: '02/11/2022',
+                    date: newDate,
                     message: inputMsg,
                     status: 'sent'
             });
@@ -209,14 +220,14 @@ createApp({
             //setto un timeout per una risposta automatica
             this.autoMsg = setTimeout(()=> {
                 this.contacts[this.currentIndex].messages.push({
-                    date: '02/11/2022',
+                    date: newDate,
                     message: 'ok',
                     status: 'received'
             })
             }, 1000)
             //svuoto il mio input
             this.newMsg = '';
-        },
-    }
+        }    
+    },
 //monto l'app
 }).mount('#app')

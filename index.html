@@ -55,13 +55,13 @@
                         <span class="input-group-text bg-white" id="basic-addon1"><i
                                 class="fa-solid fa-magnifying-glass"></i></span>
                         <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat"
-                            aria-label="Username" aria-describedby="basic-addon1">
+                            aria-label="Username" aria-describedby="basic-addon1" v-model.trim="searchTerm">
                     </div>
                 </div>
                 <!-- CHAT CON GLI USERS -->
                 <div id="usersChat">
-                    <div class="userChat d-flex p-1" :class="currentIndex === index ? 'activeChat' : ''" v-for="(contact, index) in contacts" :key="contact.id"
-                    @click="setActiveChat(index)">
+                    <div class="userChat d-flex p-1" :class="currentIndex === index ? 'activeChat' : ''" v-for="(contact, index) in filteredContact" :key="contact.id"
+                    @click="setActiveChat(contact.id)">
                         <img :src="'./img/avatar' + contact.avatar +'.jpg'" :alt="contact.name" class="mx-3">
                         <div class="justify-content-between">
                         </div>
@@ -79,11 +79,13 @@
                 <!-- HEADER CON LA CHAT ATTIVA -->
                 <div class="activeChatUser d-flex align-items-center justify-content-between">
                     <div class="profile d-flex">
-                        <img :src="'./img/avatar' + contacts[currentIndex].avatar +'.jpg'"  :alt="contacts[currentIndex].name">
+                        <img :src="'./img/avatar' + contacts[currentIndex].avatar +'.jpg'" :alt="contacts[currentIndex].name">
                         <div class="d-flex d-flex align-items-center justify-content-between">
                             <div class="d-flex flex-column">
                                 <span>{{contacts[currentIndex].name}}</span>
-                                <span class="lastAccess">Ultimo accesso: {{contacts[currentIndex].messages[0].date}}</span>
+                                <span class="lastAccess">Ultimo accesso: 
+                                    {{contacts[currentIndex].messages[contacts[currentIndex].messages.length -1].date}}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -96,7 +98,7 @@
                 <!-- SCHERMATA CHAT -->
                 <div id="chat" class="p-5">
                     <div class="d-flex d-flex justify-content-end flex-column"
-                    v-for="(msg, index) in contacts[currentIndex].messages">
+                    v-for="(msg, index) in contacts[currentIndex].messages" :key="index">
                         <div :class="msg.status ==='sent' ? 'sent' : 'received'">
                             <span>{{msg.message}}</span>
                             <div class="dateLastMsg d-flex justify-content-end">{{msg.date}}</div>
@@ -106,7 +108,7 @@
                 <!-- INPUT SCRIVI MESSAGGIO -->
                 <div id="sendMsg" class="d-flex align-items-center justify-content-around px-2">
                     <i class="fa-regular fa-face-smile fa-lg"></i>
-                    <input @keyup.enter="sendMsg" v-model="newMsg" type="text" placeholder="Scrivi un messaggio" class="p-2">
+                    <input @keyup.enter="sendMsg" v-model.trim="newMsg" type="text" placeholder="Scrivi un messaggio" class="p-2">
                     <i class="fa-solid fa-microphone fa-lg"></i>
                 </div>
             </section>

@@ -28,6 +28,7 @@
 /* BODY */
 #wrapper{
     height: 100vh;
+    width: 100%;
     background: linear-gradient(0deg, rgb(228, 226, 222) 85%, rgb(0, 150, 136) 85%);
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
