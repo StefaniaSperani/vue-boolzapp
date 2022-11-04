@@ -1,6 +1,6 @@
 
 
-const {createApp} = Vue;
+const { createApp } = Vue;
 //Creo l'App
 createApp({
     //Inserisco i data
@@ -187,7 +187,7 @@ createApp({
                 }
             ],
             //creo un array con delle emoji
-            icons:[
+            icons: [
                 '&#128512;',
                 '&#128513;',
                 '&#128514;',
@@ -236,8 +236,8 @@ createApp({
         }
     },
     computed: {
-        filteredContact(){
-            return this.contacts.filter((item)=>{
+        filteredContact() {
+            return this.contacts.filter((item) => {
                 const name = item.name.toLowerCase();
                 return name.includes(this.searchTerm.toLowerCase());
             })
@@ -246,53 +246,60 @@ createApp({
     // Creo i methods
     methods: {
         // al click sul profilo dello user 
-        setActiveChat(id){
+        setActiveChat(id) {
             // this.currentIndex = index;
-            this.currentIndex = this.contacts.findIndex((contact)=> contact.id === id);
+            this.currentIndex = this.contacts.findIndex((contact) => contact.id === id);
         },
         // nella casella di input attacco la funzione per inviare il messaggio
-        sendMsg(){
+        sendMsg() {
             const d = new Date();
             let newDate = d.toDateString();
             let inputMsg = this.newMsg;
             //SE l'inputMsg non ha nulla
-            if(!this.newMsg){
+            if (!this.newMsg) {
                 //non fa niente
                 return;
                 //altrimenti
-            }else{
+            } else {
                 //pusho il nuovo oggetto dentro la chat
                 this.contacts[this.currentIndex].messages.push({
                     date: newDate,
                     message: inputMsg,
                     status: 'sent'
-            });
-            }
+                });
+            };
+            this.$nextTick(()=>{
+                const el = this.$refs.msg[this.$refs.msg.length -1];
+                el.scrollIntoView({behavior: "smooth"});
+            })
             //setto un timeout per una risposta automatica
-            this.autoMsg = setTimeout(()=> {
+            this.autoMsg = setTimeout(() => {
                 this.contacts[this.currentIndex].messages.push({
                     date: newDate,
                     message: 'ok',
                     status: 'received'
-            })
+                });
+                this.$nextTick(()=>{
+                    const el = this.$refs.msg[this.$refs.msg.length -1];
+                    el.scrollIntoView({behavior: "smooth"});
+                })
             }, 1000)
             //svuoto il mio input
             this.newMsg = '';
         },
-        removeMsg(i){
+        removeMsg(i) {
             this.contacts[this.currentIndex].messages.splice(i, 1);
-            console.log(i);
         },
-            showMore(i){
-                if(i === this.msgInfo.index && this.msgInfo.show){
-                    this.msgInfo.index = null;
-                    this.msgInfo.show = true;
-                }else{
-                    this.msgInfo.index = i;
-                    this.msgInfo.show = true;
-                }
+        showMore(i) {
+            if (i === this.msgInfo.index && this.msgInfo.show) {
+                this.msgInfo.index = null;
+                this.msgInfo.show = true;
+            } else {
+                this.msgInfo.index = i;
+                this.msgInfo.show = true;
+            }
 
-        }  
+        }
     },
-//monto l'app
+    //monto l'app
 }).mount('#app')

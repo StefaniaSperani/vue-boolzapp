@@ -67,9 +67,9 @@
                         </div>
                         <div class="d-flex flex-column flex-grow-1">
                             <span class="userName fw-bold">{{contact.name}}</span>
-                            <span class="lastMessage">{{contact.messages[contact.messages.length -1].message}}</span>
+                            <span v-if="contact.messages.length > 0" class="lastMessage">{{contact.messages[contact.messages.length -1].message}}</span>
                         </div>
-                        <div class="dateLastMsg">{{contact.messages[contact.messages.length -1].date}}</div>
+                        <div v-if="contact.messages.length > 0" class="dateLastMsg">{{contact.messages[contact.messages.length -1].date}}</div>
                     </div>
                 </div>
             </section>
@@ -83,7 +83,7 @@
                         <div class="d-flex d-flex align-items-center justify-content-between">
                             <div class="d-flex flex-column">
                                 <span>{{contacts[currentIndex].name}}</span>
-                                <span class="lastAccess">Ultimo accesso: 
+                                <span v-if="contacts[currentIndex].messages.length > 0" class="lastAccess">Ultimo accesso: 
                                     {{contacts[currentIndex].messages[contacts[currentIndex].messages.length -1].date}}
                                 </span>
                             </div>
@@ -98,7 +98,7 @@
                 <!-- SCHERMATA CHAT -->
                 <div id="chat" class="p-5">
                     <div class="d-flex d-flex justify-content-end flex-column"
-                    v-for="(msg, index) in contacts[currentIndex].messages" :key="index">
+                    v-for="(msg, index) in contacts[currentIndex].messages" :key="index" ref="msg">
                         <div :class="msg.status ==='sent' ? 'sent' : 'received'" class=" position-relative">
                             <i class="fa-solid fa-chevron-down" @click="showMore(index)" ></i>
                             <div class="delete-message" v-if="msgInfo.index === index && msgInfo.show">
