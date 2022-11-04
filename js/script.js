@@ -10,6 +10,10 @@ createApp({
             newMsg: '',
             autoMsg: '',
             searchTerm: '',
+            msgInfo: {
+                index: null,
+                show: false,
+            },
             //Inserisco l'array dei miei contatti
             contacts: [
                 {
@@ -181,7 +185,54 @@ createApp({
                         }
                     ],
                 }
-            ]
+            ],
+            //creo un array con delle emoji
+            icons:[
+                '&#128512;',
+                '&#128513;',
+                '&#128514;',
+                '&#128515;',
+                '&#128516;',
+                '&#128517;',
+                '&#128518;',
+                '&#128519;',
+                '&#128521;',
+                '&#128522;',
+                '&#128523;',
+                '&#128524;',
+                '&#128525;',
+                '&#128526;',
+                '&#128528;',
+                '&#128529;',
+                '&#128530;',
+                '&#128536;',
+                '&#128545;',
+                '&#128548;',
+                '&#128561;',
+                '&#129315;',
+                '&#129299;',
+                '&#129319;',
+                '&#129321;',
+                '&#129325;',
+                '&#129488;',
+                '&#9996;',
+                '&#9995;',
+                '&#10024;',
+                '&#10062;',
+                '&#128064;',
+                '&#128077;',
+                '&#128079;',
+                '&#128152;',
+                '&#128149;',
+                '&#128156;',
+                '&#128158;',
+                '&#128584;',
+                '&#129310;',
+                '&#129505;',
+                '&#127802;',
+                '&#127801;',
+                '&#9749;'
+            ],
         }
     },
     computed: {
@@ -227,7 +278,21 @@ createApp({
             }, 1000)
             //svuoto il mio input
             this.newMsg = '';
-        }    
+        },
+        removeMsg(i){
+            this.contacts[this.currentIndex].messages.splice(i, 1);
+            console.log(i);
+        },
+            showMore(i){
+                if(i === this.msgInfo.index && this.msgInfo.show){
+                    this.msgInfo.index = null;
+                    this.msgInfo.show = true;
+                }else{
+                    this.msgInfo.index = i;
+                    this.msgInfo.show = true;
+                }
+
+        }  
     },
 //monto l'app
 }).mount('#app')

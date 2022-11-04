@@ -56,7 +56,7 @@ img{
     border-radius: 50%;
     margin-right: 2px;
 }
-.fa-solid{
+.fa-solid, .fa-regular{
     color: grey;
     padding: 0 8px;
     cursor: pointer;
@@ -135,4 +135,22 @@ input{
 input:focus-visible {
     outline: none;
     
+}
+.fa-chevron-down{
+    position: absolute;
+    right: 0;
+}
+.delete-message{
+    position: absolute;
+    right: 5px;
+    top: 25px;
+    width: fit-content;
+    height: fit-content;
+    background-color: #f3eeea;
+    padding: 7px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.fa-chevron-down:hover .delete-message{
+    display: block;
 }

@@ -99,7 +99,11 @@
                 <div id="chat" class="p-5">
                     <div class="d-flex d-flex justify-content-end flex-column"
                     v-for="(msg, index) in contacts[currentIndex].messages" :key="index">
-                        <div :class="msg.status ==='sent' ? 'sent' : 'received'">
+                        <div :class="msg.status ==='sent' ? 'sent' : 'received'" class=" position-relative">
+                            <i class="fa-solid fa-chevron-down" @click="showMore(index)" ></i>
+                            <div class="delete-message" v-if="msgInfo.index === index && msgInfo.show">
+                                <div @click="removeMsg(index)">Cancella messaggio</div>
+                            </div>
                             <span>{{msg.message}}</span>
                             <div class="dateLastMsg d-flex justify-content-end">{{msg.date}}</div>
                         </div>
