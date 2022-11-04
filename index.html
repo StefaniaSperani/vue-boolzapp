@@ -112,8 +112,10 @@
                 <!-- INPUT SCRIVI MESSAGGIO -->
                 <div id="sendMsg" class="d-flex align-items-center justify-content-around px-2">
                     <div class="icons">
-                        <i class="fa-regular fa-face-smile fa-lg"></i>
-                    <div id="emoji" v-if="showEmoji"></div>
+                        <i @click="showEmoticons" class="fa-regular fa-face-smile fa-lg"></i>
+                    <div id="emoji" v-if="showEmoji">
+                        <span class="pointer" v-for="(icon, index) in icons" :key="index" v-html="icon" @click="addEmoji(index)"></span>
+                    </div>
                     </div>
 
                     <input @keyup.enter="sendMsg" v-model.trim="newMsg" type="text" placeholder="Scrivi un messaggio" class="p-2">

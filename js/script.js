@@ -270,9 +270,9 @@ createApp({
                     status: 'sent'
                 });
             };
-            this.$nextTick(()=>{
-                const el = this.$refs.msg[this.$refs.msg.length -1];
-                el.scrollIntoView({behavior: "smooth"});
+            this.$nextTick(() => {
+                const el = this.$refs.msg[this.$refs.msg.length - 1];
+                el.scrollIntoView({ behavior: "smooth" });
             })
             //setto un timeout per una risposta automatica
             this.autoMsg = setTimeout(() => {
@@ -281,9 +281,9 @@ createApp({
                     message: 'ok',
                     status: 'received'
                 });
-                this.$nextTick(()=>{
-                    const el = this.$refs.msg[this.$refs.msg.length -1];
-                    el.scrollIntoView({behavior: "smooth"});
+                this.$nextTick(() => {
+                    const el = this.$refs.msg[this.$refs.msg.length - 1];
+                    el.scrollIntoView({ behavior: "smooth" });
                 })
             }, 1000)
             //svuoto il mio input
@@ -293,16 +293,22 @@ createApp({
             this.contacts[this.currentIndex].messages.splice(i, 1);
         },
         showMore(i) {
-            if (i === this.msgInfo.index && this.msgInfo.show){
+            if (i === this.msgInfo.index && this.msgInfo.show) {
                 this.msgInfo.index = null;
                 this.msgInfo.show = false;
-                
+
             } else {
                 this.msgInfo.index = i;
                 this.msgInfo.show = true;
-                
+
             }
 
+        },
+        showEmoticons() {
+            this.showEmoji = !this.showEmoji;
+        },
+        addEmoji(index) {
+            this.newMsg += this.icons[index];
         }
     },
     //monto l'app
