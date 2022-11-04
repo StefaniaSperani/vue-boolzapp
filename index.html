@@ -83,9 +83,10 @@
                         <div class="d-flex d-flex align-items-center justify-content-between">
                             <div class="d-flex flex-column">
                                 <span>{{contacts[currentIndex].name}}</span>
-                                <span v-if="contacts[currentIndex].messages.length > 0" class="lastAccess">Ultimo accesso: 
+                                <span v-if="contacts[currentIndex].messages.length > 0 && !isTyping" class="lastAccess">Ultimo accesso: 
                                     {{contacts[currentIndex].messages[contacts[currentIndex].messages.length -1].date}}
                                 </span>
+                                <span v-if="isTyping" class="lastAccess" >Sta scrivendo...</span>
                             </div>
                         </div>
                     </div>

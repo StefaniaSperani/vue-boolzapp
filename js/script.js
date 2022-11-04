@@ -11,6 +11,7 @@ createApp({
             autoMsg: '',
             searchTerm: '',
             showEmoji: false,
+            isTyping: false,
             msgInfo: {
                 index: null,
                 show: false,
@@ -234,6 +235,27 @@ createApp({
                 '&#127801;',
                 '&#9749;'
             ],
+            answers: [
+                'Ok',
+                'Non posso',
+                'Più tardi',
+                'Si',
+                'No',
+                'Sei sicuro?',
+                'Forse si...',
+                'Non ci posso credere!',
+                "E' tardi",
+                'Buongiorno!',
+                "E' stato un piacere aiutarti",
+                'Vuoi che ti racconti una barzelletta?',
+                'Buonanotte',
+                'Non ho capito..',
+                'E se poi te ne penti?',
+                'Lascia stare',
+                'Non lo farò mai',
+                'Come dici tu',
+                'Lol'
+            ],
         }
     },
     computed: {
@@ -250,6 +272,9 @@ createApp({
         setActiveChat(id) {
             // this.currentIndex = index;
             this.currentIndex = this.contacts.findIndex((contact) => contact.id === id);
+        },
+        randomMsg() {
+            return this.answers[Math.floor(Math.random() * this.answers.length)];
         },
         // nella casella di input attacco la funzione per inviare il messaggio
         sendMsg() {
@@ -274,18 +299,20 @@ createApp({
                 const el = this.$refs.msg[this.$refs.msg.length - 1];
                 el.scrollIntoView({ behavior: "smooth" });
             })
+            this.isTyping = true;
             //setto un timeout per una risposta automatica
             this.autoMsg = setTimeout(() => {
                 this.contacts[this.currentIndex].messages.push({
                     date: newDate + ' ' + newTime,
-                    message: 'ok',
+                    message: this.randomMsg(),
                     status: 'received'
                 });
                 this.$nextTick(() => {
                     const el = this.$refs.msg[this.$refs.msg.length - 1];
                     el.scrollIntoView({ behavior: "smooth" });
                 })
-            }, 1000)
+                this.isTyping = false;
+            }, 3000)
             //svuoto il mio input
             this.newMsg = '';
         },
@@ -296,13 +323,10 @@ createApp({
             if (i === this.msgInfo.index && this.msgInfo.show) {
                 this.msgInfo.index = null;
                 this.msgInfo.show = false;
-
             } else {
                 this.msgInfo.index = i;
                 this.msgInfo.show = true;
-
             }
-
         },
         showEmoticons() {
             this.showEmoji = !this.showEmoji;
