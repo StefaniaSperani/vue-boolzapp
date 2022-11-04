@@ -253,7 +253,8 @@ createApp({
         // nella casella di input attacco la funzione per inviare il messaggio
         sendMsg() {
             const d = new Date();
-            let newDate = d.toDateString();
+            let newDate = d.toLocaleDateString('it-IT');
+            let newTime = d.toLocaleTimeString('it-IT');
             let inputMsg = this.newMsg;
             //SE l'inputMsg non ha nulla
             if (!this.newMsg) {
@@ -263,7 +264,7 @@ createApp({
             } else {
                 //pusho il nuovo oggetto dentro la chat
                 this.contacts[this.currentIndex].messages.push({
-                    date: newDate,
+                    date: newDate + ' ' + newTime,
                     message: inputMsg,
                     status: 'sent'
                 });
@@ -275,7 +276,7 @@ createApp({
             //setto un timeout per una risposta automatica
             this.autoMsg = setTimeout(() => {
                 this.contacts[this.currentIndex].messages.push({
-                    date: newDate,
+                    date: newDate + ' ' + newTime,
                     message: 'ok',
                     status: 'received'
                 });

@@ -137,8 +137,12 @@ input:focus-visible {
     
 }
 .fa-chevron-down{
+    display: none;
     position: absolute;
     right: 0;
+}
+.fa-chevron-down:hover {
+    display: block;
 }
 .delete-message{
     position: absolute;
@@ -150,7 +154,4 @@ input:focus-visible {
     padding: 7px;
     border-radius: 30px;
     cursor: pointer;
-}
-.fa-chevron-down:hover .delete-message{
-    display: block;
 }
