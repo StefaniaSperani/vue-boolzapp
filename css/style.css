@@ -140,8 +140,9 @@ input:focus-visible {
     display: none;
     position: absolute;
     right: 0;
+    z-index: 10;
 }
-.fa-chevron-down:hover {
+.mymsg:hover .fa-chevron-down{
     display: block;
 }
 .delete-message{
@@ -154,4 +155,7 @@ input:focus-visible {
     padding: 7px;
     border-radius: 30px;
     cursor: pointer;
+}
+.icons{
+    position: relative;
 }

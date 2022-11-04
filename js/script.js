@@ -10,6 +10,7 @@ createApp({
             newMsg: '',
             autoMsg: '',
             searchTerm: '',
+            showEmoji: false,
             msgInfo: {
                 index: null,
                 show: false,
@@ -292,12 +293,14 @@ createApp({
             this.contacts[this.currentIndex].messages.splice(i, 1);
         },
         showMore(i) {
-            if (i === this.msgInfo.index && this.msgInfo.show) {
+            if (i === this.msgInfo.index && this.msgInfo.show){
                 this.msgInfo.index = null;
-                this.msgInfo.show = true;
+                this.msgInfo.show = false;
+                
             } else {
                 this.msgInfo.index = i;
                 this.msgInfo.show = true;
+                
             }
 
         }

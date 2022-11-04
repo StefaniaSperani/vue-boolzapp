@@ -97,21 +97,25 @@
                 </div>
                 <!-- SCHERMATA CHAT -->
                 <div id="chat" class="p-5">
-                    <div class="d-flex d-flex justify-content-end flex-column"
+                    <div class="d-flex d-flex justify-content-end flex-column mymsg"
                     v-for="(msg, index) in contacts[currentIndex].messages" :key="index" ref="msg">
                         <div :class="msg.status ==='sent' ? 'sent' : 'received'" class=" position-relative">
                             <i class="fa-solid fa-chevron-down" @click="showMore(index)" ></i>
                             <div class="delete-message" v-if="msgInfo.index === index && msgInfo.show">
                                 <div @click="removeMsg(index)">Cancella messaggio</div>
                             </div>
-                            <span>{{msg.message}}</span>
+                            <span v-html="msg.message"></span>
                             <div class="dateLastMsg d-flex justify-content-end">{{msg.date}}</div>
                         </div>
                     </div>
                 </div>
                 <!-- INPUT SCRIVI MESSAGGIO -->
                 <div id="sendMsg" class="d-flex align-items-center justify-content-around px-2">
-                    <i class="fa-regular fa-face-smile fa-lg"></i>
+                    <div class="icons">
+                        <i class="fa-regular fa-face-smile fa-lg"></i>
+                    <div id="emoji" v-if="showEmoji"></div>
+                    </div>
+
                     <input @keyup.enter="sendMsg" v-model.trim="newMsg" type="text" placeholder="Scrivi un messaggio" class="p-2">
                     <i class="fa-solid fa-microphone fa-lg"></i>
                 </div>
